@@ -2,8 +2,11 @@ const gameWindow = document.querySelector('.game')
 const cards = document.querySelectorAll('.card')
 const reset = document.querySelector('button')
 const gameover = document.querySelector('.gameover')
+const win = document.querySelector('.win')
+const life = document.querySelector('.lives')
 let lives = 10
 let cardFlip = 0
+let points = 0
 // Tablica z liczbami do przypisania
 const numbers = [1, 1, 2, 2]
 
@@ -22,6 +25,7 @@ const flipCard = e => {
 		cardFlip += 1
 		console.log(`Ilośc obróconych kart na ten moment ${cardFlip}`)
 		lives -= 1
+		life.textContent = 'Wartość to żyć: ' + lives
 		console.log(`Życia ${lives}`)
 		loseCheck()
 		image(e)
@@ -125,7 +129,10 @@ const clearCard = randomNumber => {
 						}
 					})
 					cardFlip = 0
+					points += 1
 					console.log(`usuwam: ${randomNumber}`)
+					console.log(` punkty ${points}`)
+					winCheck()
 				}, 2000)
 			}
 		}
@@ -150,6 +157,7 @@ const resetBtn = () => {
 const loseCheck = () => {
 	if (lives === 0) {
 		reset.disabled = true
+		cards.disabled = true
 		// Opóźniamy wykonanie o 3 sekundy (3000 ms)
 		setTimeout(() => {
 			gameWindow.classList.add('none')
@@ -159,8 +167,22 @@ const loseCheck = () => {
 	}
 }
 
+const winCheck = () => {
+	if (points === 2) {
+		reset.disabled = true
+		cards.disabled = true
+		gameWindow.classList.add('none')
+		win.classList.remove('none')
+		console.log(gameover)
+	}
+}
+
 cards.forEach(card => {
 	card.addEventListener('click', flipCard)
 })
 
 reset.addEventListener('click', resetBtn)
+
+
+
+// można klikać po odkrycium, trzeba jakiś disabled klikanie, do czasu aż sprawdzi win/lose

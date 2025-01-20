@@ -24,7 +24,8 @@ body {
   height: 80vh;
 }
 
-.gameover {
+.gameover,
+.win {
   display: block;
   text-align: center; /* centrowanie poziome */
   line-height: 100px; /* wysokość elementu musi być znana */
@@ -37,9 +38,9 @@ body {
 
 .card {
   position: relative;
-  width: 200px;
-  height: 300px;
-  perspective: 250px;
+  width: 100px;
+  height: 150px;
+  perspective: 125px;
   cursor: pointer;
 }
 
@@ -56,7 +57,7 @@ body {
 }
 
 .card::after {
-  content: " przód";
+  content: " ";
   background: rgb(131, 58, 180);
   background: radial-gradient(circle, rgb(131, 58, 180) 0%, rgb(253, 29, 29) 50%, rgb(252, 176, 69) 100%);
 }
@@ -66,7 +67,7 @@ body {
 }
 
 .card::before {
-  content: "tył";
+  content: "";
   background: rgb(131, 58, 180);
   transform: rotateY(180deg);
   background-color: var(--before-background, blue);
@@ -74,4 +75,12 @@ body {
 
 .cardflip::before {
   transform: rotateY(360deg);
+}
+
+@media (min-width: 900px) {
+  .card {
+    width: 200px;
+    height: 300px;
+    perspective: 250px;
+  }
 }/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,90 @@
+body {
+	background-color: bisque;
+	margin: 0;
+	padding: 0;
+}
+
+.full {
+	background-color: yellow;
+}
+
+.game {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	flex-direction: column;
+}
+.container-cards {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	width: 100%;
+	height: 80vh;
+}
+
+.gameover {
+	display: block;
+	text-align: center; /* centrowanie poziome */
+	line-height: 100px; /* wysokość elementu musi być znana */
+	height: 100px; /* wysokość kontenera */
+}
+
+.none {
+	display: none;
+}
+
+.card {
+	position: relative;
+	width: 200px;
+	height: 300px;
+	perspective: 250px;
+	cursor: pointer;
+}
+
+.card::before,
+.card::after {
+	content: '';
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background: white;
+	box-sizing: border-box;
+	transition: 1s transform;
+	backface-visibility: hidden;
+}
+
+.card::after {
+	content: ' przód';
+	background: rgb(131, 58, 180);
+	background: radial-gradient(circle, rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);
+}
+
+.cardflip::after {
+	transform: rotateY(180deg);
+}
+
+.card::before {
+	content: 'tył';
+	background: rgb(131, 58, 180);
+
+	transform: rotateY(180deg);
+	background-color: var(--before-background, blue);
+}
+
+.cardflip::before {
+	transform: rotateY(360deg);
+}
+
+// .card:hover::after {
+// 	transform: rotateY(180deg);
+// }
+
+// .card::before {
+// 	background: rgb(131, 58, 180);
+// 	background: radial-gradient(circle, rgb(41, 122, 47) 0%, rgb(131, 50, 50) 50%, rgb(60, 51, 145) 100%);
+// 	transform: rotateY(180deg);
+// }
+
+// .card:before {
+// 	transform: rotateY(360deg);
+// }

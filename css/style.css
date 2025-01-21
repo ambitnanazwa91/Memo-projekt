@@ -106,7 +106,7 @@ body {
 
 .button {
   text-shadow: -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black, 2px 2px 0 black, 0px 0px 5px black;
-  background-color: rgb(185, 33, 36);
+  background: radial-gradient(circle, rgb(185, 33, 36) 0%, rgb(184, 37, 39) 50%, rgb(148, 43, 44) 100%);
   border-radius: 6px;
   border: 3px solid rgb(0, 0, 0);
   display: inline-block;

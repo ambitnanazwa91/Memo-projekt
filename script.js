@@ -1,17 +1,26 @@
 const gameWindow = document.querySelector('.game')
+const cardsContainer = document.querySelector('.container-cards')
 const cards = document.querySelectorAll('.card')
 const reset = document.querySelector('button')
 const gameover = document.querySelector('.gameover')
 const win = document.querySelector('.win')
 const life = document.querySelector('.lives')
+const colors = ['red', 'green', 'blue']
 let lives = 10
 let cardFlip = 0
 let points = 0
 // Tablica z liczbami do przypisania
-const numbers = [1, 1, 2, 2]
+const numbers = [1, 1, 2, 2, 3, 3]
 
 // Przechowuje dostępne liczby
 let availableNumbers = [...numbers]
+
+if (cards.length % 2 !== 0) {
+	const dummy = document.createElement('div')
+	dummy.classList.add('item', 'dummy')
+	dummy.style.visibility = 'hidden' // Ukrycie elementu
+	cardsContainer.appendChild(dummy)
+}
 
 //obwraca karte i zabiera jedno odkrycie z puli
 
@@ -25,7 +34,7 @@ const flipCard = e => {
 		cardFlip += 1
 		console.log(`Ilośc obróconych kart na ten moment ${cardFlip}`)
 		lives -= 1
-		life.textContent = 'Wartość to żyć: ' + lives
+		life.textContent = 'Ruchów ' + lives
 		console.log(`Życia ${lives}`)
 		loseCheck()
 		image(e)
@@ -58,7 +67,8 @@ const image = e => {
 		console.log(`Wylosowana ${assignedNumber}`)
 
 		// Ustawiamy zmienną CSS do zmiany tła w ::before
-		element.style.setProperty('--before-background', assignedNumber === 1 ? 'red' : 'green')
+		const colorIndex = (assignedNumber - 1) % colors.length
+		element.style.setProperty('--before-background', colors[colorIndex])
 		clearCard(assignedNumber)
 	} else if (element.classList.contains('checked') && element.classList.contains('cardflip')) {
 		const value = Array.from(element.classList).find(cls => /^\d+$/.test(cls))
@@ -168,7 +178,7 @@ const loseCheck = () => {
 }
 
 const winCheck = () => {
-	if (points === 2) {
+	if (points === 3) {
 		reset.disabled = true
 		cards.disabled = true
 		gameWindow.classList.add('none')
@@ -182,7 +192,5 @@ cards.forEach(card => {
 })
 
 reset.addEventListener('click', resetBtn)
-
-
 
 // można klikać po odkrycium, trzeba jakiś disabled klikanie, do czasu aż sprawdzi win/lose

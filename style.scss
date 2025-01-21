@@ -2,6 +2,9 @@ body {
 	background-color: bisque;
 	margin: 0;
 	padding: 0;
+	font-family: 'Modak', serif;
+	font-weight: 400;
+	font-style: normal;
 }
 
 .full {
@@ -27,9 +30,11 @@ body {
 .gameover,
 .win {
 	display: block;
+	height: 100vh;
 	text-align: center; /* centrowanie poziome */
 	line-height: 100px; /* wysokość elementu musi być znana */
 	height: 100px; /* wysokość kontenera */
+	font-size: 80px;
 }
 
 .none {
@@ -60,8 +65,9 @@ body {
 
 .card::after {
 	content: ' ';
-	background: rgb(131, 58, 180);
-	background: radial-gradient(circle, rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);
+	background: radial-gradient(circle, rgba(185, 33, 36, 1) 0%, rgb(143, 36, 37) 50%, rgb(99, 32, 33) 100%);
+	border: 3px solid black;
+	border-radius: 6px;
 }
 
 .cardflip::after {
@@ -70,8 +76,8 @@ body {
 
 .card::before {
 	content: '';
-	background: rgb(131, 58, 180);
-
+	border: 3px solid black;
+	border-radius: 6px;
 	transform: rotateY(180deg);
 	background-color: var(--before-background, blue);
 }
@@ -80,10 +86,46 @@ body {
 	transform: rotateY(360deg);
 }
 
-.dummy {
-	visibility: hidden; /* Ukrywa zawartość pustego elementu */
-	pointer-events: none; /* Wyłącza interakcje użytkownika */
+.h {
+	background-size: cover; /* Dopasowanie obrazu do elementu */
+	background-position: center; /* Wyśrodkowanie obrazu */
+	background-repeat: no-repeat; /* Zapobieganie powtarzaniu */
+	width: 75px; /* Szerokość elementu */
+	height: 60px; /* Wysokość elementu */
+	padding-top: 25px;
 }
+
+.lives {
+	font-size: 70px;
+	padding-left: 5px;
+	color: rgb(185, 33, 36);
+	text-shadow: -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black, 2px 2px 0 black, 0px 0px 5px black;
+}
+
+.button {
+	text-shadow: -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black, 2px 2px 0 black, 0px 0px 5px black;
+	background-color: rgb(185, 33, 36);
+	border-radius: 6px;
+	border: 3px solid rgb(0, 0, 0);
+	display: inline-block;
+	cursor: pointer;
+	color: #ffffff;
+	font-family: 'Modak', serif;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	font-size: 25px;
+
+	padding: 4px 20px;
+	text-decoration: none;
+}
+.button:hover {
+	background-color: rgb(202, 60, 62);
+}
+.button:active {
+	position: relative;
+	top: 2px;
+}
+
 // .card:hover::after {
 // 	transform: rotateY(180deg);
 // }
@@ -103,5 +145,43 @@ body {
 		width: 230px;
 		height: 300px;
 		perspective: 250px;
+	}
+}
+
+@media (max-width: 820px) {
+	.button {
+		// box-shadow: inset 0px 1px 0px 0px rgb(185, 33, 36);
+		// background: linear-gradient(to bottom, #610303 5%, rgb(185, 33, 36) 100%);
+		// background-color: rgb(185, 33, 36);
+		// border-radius: 6px;
+		// border: 1px solid rgb(185, 33, 36);
+		// display: inline-block;
+		// cursor: pointer;
+		// color: #ffffff;
+		// font-family: 'Modak', serif;
+		// text-transform: uppercase;
+		// letter-spacing: 2px;
+		font-size: 55px;
+
+		padding: 10px 30px;
+		// text-decoration: none;
+	}
+}
+
+@media (max-width: 420px) {
+	.button {
+		font-size: 15px;
+		padding: 10px 20px;
+	}
+
+	.h {
+		width: 35px; /* Szerokość elementu */
+		height: 25px; /* Wysokość elementu */
+		padding-top: 25px;
+	}
+
+	.lives {
+		font-size: 30px;
+		padding-left: 5px;
 	}
 }

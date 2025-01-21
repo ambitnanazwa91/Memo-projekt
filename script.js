@@ -9,18 +9,8 @@ const colors = ['red', 'green', 'blue']
 let lives = 10
 let cardFlip = 0
 let points = 0
-// Tablica z liczbami do przypisania
 const numbers = [1, 1, 2, 2, 3, 3]
-
-// Przechowuje dostępne liczby
 let availableNumbers = [...numbers]
-
-if (cards.length % 2 !== 0) {
-	const dummy = document.createElement('div')
-	dummy.classList.add('item', 'dummy')
-	dummy.style.visibility = 'hidden' // Ukrycie elementu
-	cardsContainer.appendChild(dummy)
-}
 
 //obwraca karte i zabiera jedno odkrycie z puli
 
@@ -34,7 +24,7 @@ const flipCard = e => {
 		cardFlip += 1
 		console.log(`Ilośc obróconych kart na ten moment ${cardFlip}`)
 		lives -= 1
-		life.textContent = 'Ruchów ' + lives
+		life.textContent = ': ' + lives
 		console.log(`Życia ${lives}`)
 		loseCheck()
 		image(e)
@@ -193,4 +183,5 @@ cards.forEach(card => {
 
 reset.addEventListener('click', resetBtn)
 
-// można klikać po odkrycium, trzeba jakiś disabled klikanie, do czasu aż sprawdzi win/lose
+// można klikać po odkrycium, trzeba jakiś disabled klikanie, do czasu aż sprawdzi win/lose - zablkowac
+//można wygrać i przegrać. ostatnim ruchem czyściśz plansze - zablokować

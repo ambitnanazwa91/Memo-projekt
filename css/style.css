@@ -148,12 +148,12 @@ body {
     padding: 10px 20px;
   }
   .h {
-    width: 35px; /* Szerokość elementu */
-    height: 25px; /* Wysokość elementu */
+    width: 55px; /* Szerokość elementu */
+    height: 45px; /* Wysokość elementu */
     padding-top: 25px;
   }
   .lives {
-    font-size: 30px;
+    font-size: 35px;
     padding-left: 5px;
   }
 }/*# sourceMappingURL=style.css.map */

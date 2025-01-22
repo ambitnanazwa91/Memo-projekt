@@ -51,8 +51,8 @@ body {
   flex: -1 150px; /* Szerokość każdego elementu */
   box-sizing: border-box; /* Uwzględnia padding w szerokości */
   position: relative;
-  width: 100px;
-  height: 150px;
+  width: 85px;
+  height: 140px;
   perspective: 125px;
   cursor: pointer;
 }
@@ -138,11 +138,11 @@ body {
 }
 
 .mobile {
-  padding-left: 90px;
+  padding-left: 50px;
 }
 
 .mobile-top {
-  padding-left: 60px;
+  padding-left: 25px;
 }
 
 @media (min-width: 768px) {

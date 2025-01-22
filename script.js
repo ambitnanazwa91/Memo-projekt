@@ -129,6 +129,7 @@ const clearCard = randomNumber => {
 						}
 					})
 					cardFlip = 0
+					lives += 1
 					points += 1
 					console.log(`usuwam: ${randomNumber}`)
 					console.log(` punkty ${points}`)

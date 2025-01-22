@@ -112,6 +112,10 @@ body {
   padding: 40px;
 }
 
+.block {
+  pointer-events: none;
+}
+
 .button {
   text-shadow: -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black, 2px 2px 0 black, 0px 0px 5px black;
   background: radial-gradient(circle, rgb(185, 33, 36) 0%, rgb(184, 37, 39) 50%, rgb(148, 43, 44) 100%);

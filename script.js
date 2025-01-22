@@ -20,6 +20,7 @@ const flipCard = e => {
 		console.log(e)
 		const clickCard = e.target
 		clickCard.classList.toggle('cardflip')
+		block(e)
 		console.log(clickCard)
 		cardFlip += 1
 		console.log(`Ilośc obróconych kart na ten moment ${cardFlip}`)
@@ -27,22 +28,36 @@ const flipCard = e => {
 		life.textContent = ': ' + lives
 		console.log(`Życia ${lives}`)
 		loseCheck()
+		// winCheck()
 		image(e)
 		clickCard.classList.add('checked')
 		notClearCard()
+		// block(e)
 	}
 }
 
-/// muszę to lepiej podzielić.
+// const block = e => {
+// 	if (e.classList.contains('cardflip')) {
+// 		e.classList.add('block')
+// 	} else if (cardFlip === 2) {
+// 		gameWindow.classList.add('block')
+// 	}
+// }
 
-// we flip card nadaćfunkcje, na sprwadzanie
+const block = e => {
+	if (e.target.classList.contains('cardflip')) {
+		e.target.classList.add('block')
+	} else if (cardFlip === 2) {
+		// Upewnij się, że cardFlip jest zdefiniowane i ma wartość
+		gameWindow.classList.add('block') // Upewnij się, że gameWindow jest zdefiniowane
+	}
+}
 
-// i w tej funkcji dopiero dać dwie funkcje które jeśli numer się zgadza to usuwam, jeśli nie, to dopiero wywołuje notCleard card
-//losowanie awrtości karty i przypisywanie
-
-// w sumie: głowna funkcja:  1.Klikam, pierwsz afunkcja obraca ofc, przypisuje NUMER i CHECKED.  2. sprawdza czy już było checked/. jeśli tak to sprawdzam czy jakikolwiek div z cardflip ma ten sam numer klasy. JEśli tak, to usuwam, jeśli nie to daje funkcje na usunięcie card flip
-/// struktura 1 Główne:
-/// 2. oznaczanie jako cardflip i checkd. 3.
+const cleanBlock = () => {
+	cards.forEach(card => {
+		card.classList.remove('block')
+	})
+}
 
 const image = e => {
 	const element = e.target
@@ -67,23 +82,6 @@ const image = e => {
 	}
 }
 
-// const image = e => {
-// 	const element = e.target
-// 	if (!element.classList.contains('checked')) {
-// 		const randomNumber = Math.floor(Math.random() * 2) + 1
-// 		element.classList.add(`${randomNumber}`)
-// 		console.log(`Wylosowana ${randomNumber}`)
-
-// 		// Ustawiamy zmienną CSS do zmiany tła w ::before
-// 		element.style.setProperty('--before-background', randomNumber === 1 ? 'red' : 'green')
-// 	} else {
-// 		const value = element.classList[3]
-// 		console.log(value)
-// 		clearCard(value)
-// 	}
-// }
-// jeszcze check czy cleard czy nie (wtedy odwracamy jak było)
-
 const notClearCard = () => {
 	let checkCards = 0
 
@@ -97,6 +95,7 @@ const notClearCard = () => {
 	if (checkCards === 2) {
 		setTimeout(() => {
 			resetBtn()
+			cleanBlock()
 		}, 2500)
 	} else checkCards = 0
 }
@@ -135,6 +134,7 @@ const clearCard = randomNumber => {
 					console.log(`usuwam: ${randomNumber}`)
 					console.log(` punkty ${points}`)
 					winCheck()
+					cleanBlock()
 				}, 2000)
 			}
 		}
@@ -152,12 +152,13 @@ const resetBtn = () => {
 	})
 
 	cardFlip = 0
+	cleanBlock()
 }
 
 //sprawdzanie czy koniec żyć
 
 const loseCheck = () => {
-	if (lives === 0) {
+	if (lives === 0 && cards.length > 0) {
 		reset.disabled = true
 		cards.disabled = true
 		// Opóźniamy wykonanie o 3 sekundy (3000 ms)
@@ -170,12 +171,14 @@ const loseCheck = () => {
 }
 
 const winCheck = () => {
-	if (points === cards.length) {
+	console.log(cards.length)
+	if (points === cards.length / 2) {
 		reset.disabled = true
 		cards.disabled = true
 		gameWindow.classList.add('none-display')
 		win.classList.remove('none')
 		console.log(gameover)
+		console.log(`ile kart zostało: ${cards.length}`)
 	}
 }
 
@@ -187,3 +190,4 @@ reset.addEventListener('click', resetBtn)
 
 // można klikać po odkrycium, trzeba jakiś disabled klikanie, do czasu aż sprawdzi win/lose - zablkowac
 //można wygrać i przegrać. ostatnim ruchem czyściśz plansze - zablokować
+/// dodać funkcje, która przy cardfliw 2 sprawdza czy cards.length === zero, jeśli tak to win , jeśli nie a żyć 0 to lose i to musi się dziać// jednak coś nie działa, lepiej to rozmyślec.

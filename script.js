@@ -188,6 +188,7 @@ cards.forEach(card => {
 
 reset.addEventListener('click', resetBtn)
 
-// można klikać po odkrycium, trzeba jakiś disabled klikanie, do czasu aż sprawdzi win/lose - zablkowac
+// można klikać po odkrycium, trzeba jakiś disabled klikanie, do czasu aż sprawdzi win/lose - DONE
 //można wygrać i przegrać. ostatnim ruchem czyściśz plansze - zablokować
 /// dodać funkcje, która przy cardfliw 2 sprawdza czy cards.length === zero, jeśli tak to win , jeśli nie a żyć 0 to lose i to musi się dziać// jednak coś nie działa, lepiej to rozmyślec.
+//można zejść na minus żyć. dodać że jeśli 0 żyć to block?

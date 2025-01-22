@@ -162,7 +162,7 @@ const loseCheck = () => {
 		cards.disabled = true
 		// Opóźniamy wykonanie o 3 sekundy (3000 ms)
 		setTimeout(() => {
-			gameWindow.classList.add('none')
+			gameWindow.classList.add('none-display')
 			gameover.classList.remove('none')
 			console.log(gameover)
 		}, 3000) // 3000 ms = 3 sekundy
@@ -170,10 +170,10 @@ const loseCheck = () => {
 }
 
 const winCheck = () => {
-	if (points === 3) {
+	if (points === cards.length) {
 		reset.disabled = true
 		cards.disabled = true
-		gameWindow.classList.add('none')
+		gameWindow.classList.add('none-display')
 		win.classList.remove('none')
 		console.log(gameover)
 	}

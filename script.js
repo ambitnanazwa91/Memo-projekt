@@ -6,7 +6,7 @@ const gameover = document.querySelector('.gameover')
 const win = document.querySelector('.win')
 const life = document.querySelector('.lives')
 const colors = ['red', 'green', 'blue', 'violet', 'orange', 'white']
-let lives = 10
+let lives = 20
 let cardFlip = 0
 let points = 0
 const numbers = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6]
@@ -131,6 +131,7 @@ const clearCard = randomNumber => {
 					cardFlip = 0
 					lives += 1
 					points += 1
+					life.textContent = ': ' + lives
 					console.log(`usuwam: ${randomNumber}`)
 					console.log(` punkty ${points}`)
 					winCheck()

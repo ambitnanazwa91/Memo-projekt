@@ -5,11 +5,11 @@ const reset = document.querySelector('button')
 const gameover = document.querySelector('.gameover')
 const win = document.querySelector('.win')
 const life = document.querySelector('.lives')
-const colors = ['red', 'green', 'blue']
+const colors = ['red', 'green', 'blue', 'violet', 'orange', 'white']
 let lives = 10
 let cardFlip = 0
 let points = 0
-const numbers = [1, 1, 2, 2, 3, 3]
+const numbers = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6]
 let availableNumbers = [...numbers]
 
 //obwraca karte i zabiera jedno odkrycie z puli
@@ -112,8 +112,8 @@ const clearCard = randomNumber => {
 				cards[j].classList.contains('cardflip')
 			) {
 				setTimeout(() => {
-					cards[i].style.display = 'none'
-					cards[j].style.display = 'none'
+					cards[i].classList.add('none')
+					cards[j].classList.add('none')
 					cards[i].classList.forEach(cls => {
 						if (/^\d+$/.test(cls)) {
 							// Sprawdza, czy klasa zawiera tylko cyfry
@@ -160,8 +160,8 @@ const loseCheck = () => {
 		cards.disabled = true
 		// Opóźniamy wykonanie o 3 sekundy (3000 ms)
 		setTimeout(() => {
-			gameWindow.classList.add('none')
-			gameover.classList.remove('none')
+			gameWindow.classList.add('none-display')
+			gameover.classList.remove('none-display')
 			console.log(gameover)
 		}, 3000) // 3000 ms = 3 sekundy
 	}
@@ -171,8 +171,8 @@ const winCheck = () => {
 	if (points === 3) {
 		reset.disabled = true
 		cards.disabled = true
-		gameWindow.classList.add('none')
-		win.classList.remove('none')
+		gameWindow.classList.add('none-display')
+		win.classList.remove('none-display')
 		console.log(gameover)
 	}
 }
